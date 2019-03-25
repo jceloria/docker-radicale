@@ -5,6 +5,3 @@
 .DS_Store
 ._*
 .idea
-settings.ini
-static/bootstrap.*
-static/jquery.*
