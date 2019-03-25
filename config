@@ -6,7 +6,7 @@ dns_lookup = False
 
 [auth]
 type = htpasswd
-htpasswd_filename = /data/users
+htpasswd_filename = /data/.config/radicale/users
 htpasswd_encryption = bcrypt
 delay = 1
 
