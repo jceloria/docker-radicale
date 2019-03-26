@@ -1,9 +1,9 @@
 #!/bin/sh
 
 # use default configuration if not supplied
-if [[ ! -e /data/.config/radicale/config ]]; then
-    mkdir -p /data/.config && mv /etc/radicale /data/.config
-fi
+mkdir -p /data/.config && {
+    (cd /etc/radicale && cf - .) | (cd /data/.config && tar xkf -)
+} && rm -rf /etc/radicale
 
 # setup git repository for change tracking
 if [[ ! -e /data/.git ]]; then
