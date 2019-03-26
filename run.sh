@@ -7,7 +7,11 @@ fi
 
 # setup git repository for change tracking
 if [[ ! -e /data/.git ]]; then
-    (cd /data && git init)
+    (
+      cd /data && git init && \
+        git config user.email "radicale@localhost"
+        git config user.name "Radicale"
+    )
     cat <<-'!!' > /data/.gitignore
 	.*_history
 	.Radicale.cache
