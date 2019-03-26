@@ -2,7 +2,7 @@
 
 # use default configuration if not supplied
 mkdir -p /data/.config && {
-    (cd /etc/radicale && cf - .) | (cd /data/.config && tar xkf -)
+    (cd /etc/radicale && tar cf - .) | (cd /data/.config && tar xkf -)
 } && rm -rf /etc/radicale
 
 # setup git repository for change tracking
