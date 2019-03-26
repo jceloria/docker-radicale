@@ -8,16 +8,17 @@ dns_lookup = False
 type = htpasswd
 htpasswd_filename = /data/.config/radicale/users
 htpasswd_encryption = bcrypt
-delay = 1
+
+[rights]
+type = from_file
+file = /data/.config/radicale/rights
 
 [encoding]
 request = utf-8
 stock = utf-8
 
 [storage]
-type = multifilesystem
 filesystem_folder = /data
+hook = git add -A && (git diff --cached --quiet || git commit -m "Changes by "%(user)s)
 
 [logging]
-
-[headers]
