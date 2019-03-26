@@ -9,8 +9,8 @@ RUN cd /tmp/build && \
     apk --no-cache add git shadow su-exec && \
     addgroup -S dav && adduser -S -G dav -h /data dav && \
     for file in config rights passgen.py; do \
-        { echo ${file} | grep -Eq '\.py$' && mode=0755 }; \
-        install -D -m${mode:=0644} /tmp/build/${file} /etc/radicale/${file}; \
+        mode=0644; echo ${file} | grep -Eq '\.py$' && mode=0755; \
+        install -D -m${mode} /tmp/build/${file} /etc/radicale/${file}; \
     done && install -m755 /tmp/build/run.sh / && \
     pip3 install radicale passlib bcrypt && \
     apk del .build-deps && rm -rf /var/cache/apk/* /tmp/build
