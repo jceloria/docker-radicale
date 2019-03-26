@@ -6,7 +6,7 @@ COPY . /tmp/build
 
 RUN cd /tmp/build && \
     apk add --no-cache --virtual .build-deps build-base libffi-dev && \
-    apk --no-cache add git shadow su-exec && \
+    apk --no-cache add git shadow su-exec tar && \
     addgroup -S dav && adduser -S -G dav -h /data dav && \
     for file in config rights passgen.py; do \
         mode=0644; echo ${file} | grep -Eq '\.py$' && mode=0755; \
