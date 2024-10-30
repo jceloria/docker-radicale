@@ -4,7 +4,7 @@
 # Explicitly allow the following:
 !**.gitkeep
 !*/
-!.github
+!.editorconfig
 !.gitignore
 !.pre-commit-config.yaml
 !Dockerfile
