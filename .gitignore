@@ -1,7 +1,20 @@
-*.gz
-*.log
-*.sw*
-*.zip
-.DS_Store
-._*
-.idea
+# Ignore everything
+*
+
+# Explicitly allow the following:
+!**.gitkeep
+!*/
+!.github
+!.gitignore
+!.pre-commit-config.yaml
+!Dockerfile
+!LICENSE
+!README.md
+!config.default
+!docker-entrypoint.sh
+!*.patch
+!requirements.txt
+
+# Re-ignore anything allowed above
+**__pycache__/
+.*

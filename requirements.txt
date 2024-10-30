@@ -1,0 +1,6 @@
+radicale
+radicale_storage_decsync
+bcrypt
+passlib
+pytz
+setuptools

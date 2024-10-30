@@ -1,22 +1,22 @@
 FROM python:3-alpine
 
-ENV DEBIAN_FRONTEND noninteractive
-
 COPY . /tmp/build
 
 RUN cd /tmp/build && \
-    apk add --no-cache --virtual .build-deps build-base libffi-dev && \
-    apk --no-cache add git shadow su-exec tar && \
-    addgroup -S dav && adduser -S -G dav -h /data dav && \
-    for file in config rights passgen.py; do \
-        mode=0644; echo ${file} | grep -Eq '\.py$' && mode=0755; \
-        install -D -m${mode} /tmp/build/${file} /etc/radicale/${file}; \
-    done && install -m755 /tmp/build/run.sh / && \
-    pip3 install radicale passlib bcrypt && \
+    apk add --no-cache gcompat git libgcc openssh tzdata shadow su-exec tar
+RUN cd /tmp/build && \
+    apk add --no-cache -t .build-deps build-base libffi-dev && \
+    addgroup -S radicale && adduser -S -G radicale -h /config radicale && \
+    pip install --no-cache-dir -r requirements.txt && \
+    install -m0664 config.default /tmp && \
+    install -m0755 docker-entrypoint.sh / && \
+    cd /usr/local/lib/python3*/site-packages/radicale_storage_decsync && \
+    patch -p0 < /tmp/build/multi-args.patch && \
     apk del .build-deps && rm -rf /var/cache/apk/* /tmp/build
 
+HEALTHCHECK --interval=30s --retries=3 CMD curl --fail http://localhost:5232 || exit 1
+VOLUME /config /data
 EXPOSE 5232
 
-VOLUME ["/data"]
-
-ENTRYPOINT ["/run.sh"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["radicale", "--config", "/config/config"]
