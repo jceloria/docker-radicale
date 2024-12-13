@@ -2,7 +2,7 @@
 
 docker```
 docker run -it --rm -e PUID=radicale -e PGID=radicale -e TZ=America/New_York -p 5232:5232 \
-    -v ${PWD}/radicale:/etc/radicale -v ${PWD}/DecSync:/srv/radicale ghcr.io/jceloria/radicale
+    -v ${PWD}/radicale:/etc/radicale -v ${PWD}/DecSync:/srv/radicale/decsync ghcr.io/jceloria/radicale
 ```
 
 docker-compose.yaml```
@@ -32,5 +32,5 @@ services:
     restart: unless-stopped
     volumes:
       - ${PWD}/radicale:/etc/radicale
-      - ${PWD}/DecSync:/srv/radicale
+      - ${PWD}/DecSync:/srv/radicale/decsync
 ```
