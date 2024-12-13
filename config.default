@@ -53,7 +53,7 @@ hosts = 0.0.0.0:5232, [::]:5232
 
 # Authentication method
 # Value: none | htpasswd | remote_user | http_x_remote_user | ldap | denyall
-type = http_x_remote_user
+type = htpasswd
 
 # URI to the LDAP server
 #ldap_uri = ldap://localhost
@@ -83,7 +83,7 @@ type = http_x_remote_user
 #ldap_ssl_ca_file =
 
 # Htpasswd filename
-htpasswd_filename = /config/users
+htpasswd_filename = /etc/radicale/users
 
 # Htpasswd encryption method
 # Value: plain | bcrypt | md5 | sha256 | sha512 | autodetect
@@ -125,10 +125,10 @@ htpasswd_encryption = autodetect
 # Value: multifilesystem | multifilesystem_nolock
 #type = multifilesystem
 type = radicale_storage_decsync
-decsync_dir = /data/decsync
+decsync_dir = /srv/radicale/decsync
 
 # Folder for storing local collections, created if not present
-filesystem_folder = /data/collections
+filesystem_folder = /srv/radicale/collections
 
 # Delete sync token that are older (seconds)
 #max_sync_token_age = 2592000
