@@ -16,7 +16,9 @@ if [[ ! -e /etc/radicale/users ]]; then
 fi
 
 # Update permissions
-chown -R ${PUID:=radicale}:${PGID:=radicale} /etc/radicale /srv/radicale
+usermod -o -u ${PUID} radicale
+groupmod -o -g ${PGID} -n radicale radicale
+chown -R radicale:radicale /etc/radicale /srv/radicale
 
 # Execute with an unprivileged user
-su-exec ${PUID}:${PGID} "$@"
+su-exec radicale:radicale "$@"

@@ -8,7 +8,7 @@ RUN cd /tmp/build && \
     addgroup -S radicale && adduser -S -G radicale -h /srv/radicale radicale && \
     pip install --no-cache-dir -r requirements.txt && \
     install -m0664 config.default /tmp && \
-    install -m0755 docker-entrypoint.sh / && \
+    install -m0755 entrypoint.sh / && \
     cd /usr/local/lib/python3*/site-packages/radicale_storage_decsync && \
     patch -p0 < /tmp/build/multi-args.patch && \
     apk del .build-deps && rm -rf /var/cache/apk/* /tmp/build
@@ -17,5 +17,5 @@ HEALTHCHECK --interval=30s --retries=3 CMD curl --fail http://localhost:5232 || 
 VOLUME /etc/radicale /srv/radicale
 EXPOSE 5232
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["radicale"]

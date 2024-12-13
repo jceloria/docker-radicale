@@ -11,7 +11,7 @@
 !LICENSE
 !README.md
 !config.default
-!docker-entrypoint.sh
+!entrypoint.sh
 !*.patch
 !requirements.txt
 
